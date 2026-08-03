@@ -8,8 +8,8 @@ function App() {
 
   return (
     <div className="app">
-      <SettingBar/>
       <Toolbar/>
+      <SettingBar/>
       <Canvas/>
     </div>
   )

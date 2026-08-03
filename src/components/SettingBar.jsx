@@ -2,7 +2,7 @@ import "../styles/toolbar.scss"
 
 function SettingBar() {
 	return (
-		<div className="toolbar">
+		<div className="setting-bar">
 			SettingBar
 		</div>
 	)
