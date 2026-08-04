@@ -1,13 +1,22 @@
+import { observer } from "mobx-react-lite/src/observer.js"
 import "../styles/canvas.scss"
+import { useEffect, useRef } from "react"
+import canvasState from "../store/canvasState"
 
-function Canvas() {
+const Canvas = observer(() => {
+	const canvasRef = useRef()
+
+	useEffect(() => {
+		canvasState.setCanvas(canvasRef.current)
+	}, [])
+
 	return (
 		<div className="canvas">
 			
-			<canvas width={600} height={400}/>
+			<canvas ref={canvasRef} width={600} height={400}/>
 
 		</div>
 	)
-}
+})
 
 export default Canvas

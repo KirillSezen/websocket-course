@@ -5,10 +5,38 @@
 	background-color: white;
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
 	position: absolute;
 	width: 100%;
 	box-shadow: 0 4px 5px gray;
 	z-index: 99;
+
+	&__btn {
+		height: 35px;
+		width: 30px;
+		border: none;
+		outline: none;
+		cursor: pointer;
+		background-color: white;
+
+		
+	}
+}
+
+.color__pick {
+	height: 20x;
+	width: 30px;
+	border: none;
+	outline: none;
+	cursor: pointer;
+}
+
+.leftarrow {
+	rotate: 180deg;
+}
+
+.rightarrow {
+	rotate: 180deg;
 }
 
 .setting-bar {
