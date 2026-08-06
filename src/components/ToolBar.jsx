@@ -17,7 +17,6 @@ function Toolbar() {
 				<button className="toolbar__btn" onClick={() => toolState.setTool(new Circle(canvasState.canvas))}>⭕</button>
 				<button className="toolbar__btn" onClick={() => toolState.setTool(new Eraser(canvasState.canvas))}>🪌</button>
 				<button className="toolbar__btn" onClick={() => toolState.setTool(new Line(canvasState.canvas))}>📈</button>
-				<input className="color__pick" type="color" />
 			</div>
 
 			<div>
