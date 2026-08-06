@@ -1,6 +1,6 @@
 import Tool from "./Tool"
 
-export default class Brush extends Tool {
+export default class Eraser extends Tool {
 	constructor(canvas) {
 		super(canvas)
 		this.listen()
@@ -30,6 +30,7 @@ export default class Brush extends Tool {
 
 	draw(x, y) {
 		this.ctx.lineTo(x, y)
+		this.ctx.strokeStyle = "white"
 		this.ctx.stroke()
 	}
 }
