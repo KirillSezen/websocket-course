@@ -20,8 +20,8 @@ function Toolbar() {
 			</div>
 
 			<div>
-				<button className="toolbar__btn leftarrow">↪️</button>
-				<button className="toolbar__btn rightarrow">↩️</button>
+				<button className="toolbar__btn leftarrow" onClick={() => canvasState.undo()}>↪️</button>
+				<button className="toolbar__btn rightarrow" onClick={() => canvasState.redo()}>↩️</button>
 				<button className="toolbar__btn" style={{marginRight: '10px'}}>💾</button>
 			</div>
 			
