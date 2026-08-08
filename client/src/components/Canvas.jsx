@@ -7,16 +7,35 @@ import toolState from "../store/toolState"
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useState } from "react"
+import { useParams } from 'react-router-dom'
 
 const Canvas = observer(() => {
 	const canvasRef = useRef()
 	const usernameRef = useRef()
 	const [modal, setModal] = useState(true)
+	const params = useParams()
 
 	useEffect(() => {
 		canvasState.setCanvas(canvasRef.current)
 		toolState.setTool(new Brush(canvasRef.current))
 	}, [])
+
+	useEffect(() => {
+		if(canvasState.username) {
+			const socket = new WebSocket('ws://localhost:5000/')
+			socket.onopen = () => {
+				console.log('ку')
+				socket.send(JSON.stringify({
+					id: params.id,
+					username: canvasState.username,
+					method: 'connection'
+				}))
+			}
+			socket.onmessage = (event) => {
+				console.log(event.data)
+			}
+		}
+	}, [canvasState.username])
 
 	const mouseDownHandler = () => {
 		canvasState.pushToUndo(canvasRef.current.toDataURL())
