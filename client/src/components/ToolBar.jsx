@@ -8,6 +8,18 @@ import Line from "../tools/Line"
 import Eraser from "../tools/Eraser"
 
 function Toolbar() {
+	const download = () => {
+		const dataUrl = canvasState.canvas.toDataURL()
+		const a = document.createElement('a')
+
+		a.href = dataUrl
+		a.download = canvasState.sessionId + ".jpg"
+
+		document.body.appendChild(a)
+		a.click()
+		document.body.removeChild(a)
+	}
+
 	return (
 		<div className="toolbar">
 
@@ -22,7 +34,7 @@ function Toolbar() {
 			<div>
 				<button className="toolbar__btn leftarrow" onClick={() => canvasState.undo()}>↪️</button>
 				<button className="toolbar__btn rightarrow" onClick={() => canvasState.redo()}>↩️</button>
-				<button className="toolbar__btn" style={{marginRight: '10px'}}>💾</button>
+				<button className="toolbar__btn" style={{marginRight: '10px'}} onClick={() => download()}>💾</button>
 			</div>
 			
 		</div>
