@@ -1,9 +1,13 @@
 const express = require('express')
 const app = express()
 const WSServer = require('express-ws')(app)
+const cors = require('cors')
 
 const aWss = WSServer.getWss()
 const PORT = process.env.PORT || 5050
+
+app.use(cors())
+app.use(express.json())
 
 app.ws('/', (ws, req) => {
 	ws.on('message', (msg) => {
@@ -17,6 +21,14 @@ app.ws('/', (ws, req) => {
 				break
 		}
 	})
+})
+
+app.post('/image', (req, res) => {
+
+})
+
+app.get('/image', (req, res) => {
+
 })
 
 app.listen(PORT, () => console.log(`Server started at ${PORT}`))
