@@ -7,13 +7,13 @@ const PORT = process.env.PORT || 5050
 
 app.ws('/', (ws, req) => {
 	ws.on('message', (msg) => {
-		const method = JSON.parse(msg).method
-		switch (method) {
+		msg = JSON.parse(msg)
+		switch (msg.method) {
 			case "connection":
 				connectionHandler(ws, msg)
 				break
-			case "message":
-				messageHandler(ws, msg)
+			case "draw":
+				broadcastConnection(ws, msg)
 				break
 		}
 	})
@@ -22,7 +22,6 @@ app.ws('/', (ws, req) => {
 app.listen(PORT, () => console.log(`Server started at ${PORT}`))
 
 const connectionHandler = (ws, msg) => {
-	msg = JSON.parse(msg)
 	ws.id = msg.id
 	broadcastConnection(ws, msg)
 
@@ -36,7 +35,7 @@ const messageHandler = (ws, msg) => {
 const broadcastConnection = (ws, msg) => {
 	aWss.clients.forEach(client => {
 		if (client.id === msg.id) {
-			client.send(`User: ${msg.name}, connected`)
+			client.send(JSON.stringify(msg))
 		}
 	})
 }
